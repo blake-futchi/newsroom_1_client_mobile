@@ -1,13 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { IonFooter, IonToolbar, IonButton } from '@ionic/react'
-import { LOGIN_USER, CLOSE_LOGIN } from '../state/actions/actionTypes'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { IonFooter, IonButton } from '@ionic/react'
+import { LOGIN_USER } from '../state/actions/actionTypes'
+import { onLogout } from '../modules/authentication'
 
 const Footer = props => {
+  const dispatch = useDispatch()
   const authenticated = useSelector(state => state.authenticated)
   let label
   let button
+
   if (authenticated) {
     label = 'Logout'
     button = (
@@ -15,7 +18,7 @@ const Footer = props => {
         name='login'
         id='login'
         color="danger" 
-        onClick={() => props.dispatch({ type: CLOSE_LOGIN })}
+        onClick={() => onLogout(dispatch)}
       >
        Logout
       </IonButton>

@@ -14,7 +14,7 @@ const Menu = props => {
     })
   }
   return (
-    <IonSegment id='article-category' scrollable>
+    <IonSegment id='article-category' color="light" scrollable>
       <IonSegmentButton
         name='All News'
         id=''

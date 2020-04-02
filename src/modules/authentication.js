@@ -18,8 +18,8 @@ const onLogin = (event, dispatch) => {
         payload: { authenticated: true, userEmail: response.data.email }
       });
       dispatch({ type: "GREETING", payload: `Welcome ${response.data.email}` });
+      dispatch({ type: "CLOSE_LOGIN" });
     })
-
     .catch(error => {
       let errorMessage = error.response.data.errors[0];
       dispatch({ type: "GREETING", payload: errorMessage });

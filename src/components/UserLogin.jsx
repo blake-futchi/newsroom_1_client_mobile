@@ -1,5 +1,5 @@
 import React from 'react'
-import { onLogin, onLogout } from '../modules/authentication'
+import { onLogin } from '../modules/authentication'
 import { useDispatch, useSelector } from 'react-redux'
 import { IonContent, IonButton, IonInput, IonCard } from '@ionic/react'
 
@@ -9,29 +9,37 @@ const Login = props => {
   // const message = useSelector(state => state.message)
 
   let login
-  if (authenticated) {
-    login = <IonButton color="danger" onClick={() => onLogout(dispatch)}>Logout</IonButton>
-  } else {
+  if (!authenticated) {
     login = (
       <IonContent>
         <IonCard>
-        <form id='login-form' onSubmit={event => onLogin(event, dispatch)}>
-          <IonInput id='email' name='email' placeholder='Email' />
-          <IonInput
-            id='password'
-            name='password'
-            type='password'
-            placeholder='Password'
-          />
-          <IonButton id='login-button' color="danger" type='submit' value='Login'>Submit</IonButton>
-        </form>
+          <form id='login-form' onSubmit={event => onLogin(event, dispatch)}>
+            <IonInput id='email' name='email' placeholder='Email' />
+            <IonInput
+              id='password'
+              name='password'
+              type='password'
+              placeholder='Password'
+            />
+            <IonButton
+              id='login-button'
+              color='danger'
+              type='submit'
+              value='Login'
+            >
+              Submit
+            </IonButton>
+          </form>
         </IonCard>
-        <IonButton onClick={() => dispatch({ type: 'CLOSE_LOGIN' })}>
+        <IonButton color="danger" onClick={() => dispatch({ type: 'CLOSE_LOGIN' })}>
           Close
         </IonButton>
       </IonContent>
     )
+  } else {
+    login = <></>
   }
+
   return <>{login}</>
 }
 
