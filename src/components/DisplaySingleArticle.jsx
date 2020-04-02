@@ -13,6 +13,7 @@ const DisplaySingleArticle = props => {
       <p>{article.content}</p>
       <IonButton
         id="back-button"
+        color="danger"
         onClick={() => props.dispatch({ type: "BACK_TO_ARTICLE_LIST" })}
         key={article.id}>
         Back
